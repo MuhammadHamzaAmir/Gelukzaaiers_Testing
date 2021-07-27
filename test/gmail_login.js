@@ -56,7 +56,7 @@ async function login(page_entry, email, password) {
     let login_mainp = await page_entry.waitForXPath(xpath_login_b_mainp, {
         visible: true,
       }); //login button is to be found here
-    
+      
     await login_mainp.evaluate((b) => b.click()); //login button is clicked
 
     await page_entry.waitForTimeout(4000); // delay for 4 second for website to load
@@ -74,7 +74,7 @@ async function login(page_entry, email, password) {
         visible: true,
       }); //gmail input field is to be found here
     
-    await login_google_gmail.type(process.env.GOOGLE_USER); //gmail input field is centered
+    await login_google_gmail.type("intern.alphasquad@gmail.com"); //gmail input field is centered
 
     await page_entry.waitForTimeout(4000); // delay for 4 second for website to load
     let gmail_to_pass_next = await page_entry.waitForXPath(xpath_gmail_to_pass_next, {

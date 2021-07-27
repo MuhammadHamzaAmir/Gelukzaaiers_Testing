@@ -6,7 +6,9 @@
   "scripts": {
     "test-gmail_login": "node test/gmail_login.js",
     "test-normal_login": "node test/normal_login.js",
-    "test-register": "node test/register.js"
+    "test-register": "node test/register.js",
+    "test-account_settings_reach": "node test/account_settings_reach.js"
+
     
 
   },
