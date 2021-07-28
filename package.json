@@ -6,7 +6,8 @@
     "test-gmail_login": "node test/gmail_login.js",
     "test-normal_login": "node test/normal_login.js",
     "test-register": "node test/register.js",
-    "test-my_profile_reach": "node test/my_profile_reach.js"
+    "test-my_profile_reach": "node test/my_profile_reach.js",
+    "test-account_info_change": "node test/account_info_change.js"
   },
   "keywords": [],
   "author": "",
