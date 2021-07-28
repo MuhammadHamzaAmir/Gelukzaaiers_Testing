@@ -77,14 +77,29 @@ async function account_settings(page_entry, email, password) {
     await password_input_field.type(password); //input is entered in password input field
     console.log("Password Input is entered");
 
-    await page_entry.waitForTimeout(2500); // delay of 2.5 seconds
+    await page_entry.waitForTimeout(3500); // delay of 3.5 seconds
 
     await login_button.click();
 
+    await page_entry.waitForTimeout(4100); // delay of 4.1 seconds
+
     var xpath_arrow_drop_down = "//*[@id='_next']/div/div[1]/div/div[1]/div/div/div/div/div/div[1]/div"; //xpath of dropdown
     var xpath_menu_drop_down = "//*[@id='_next']/div/div[1]/div/div[1]/div/div/div/div/div/div[2]/ul/a"; //xpath of dropdown_menu
-    
 
 
+    let arrow_drop = await page_entry.waitForXPath(xpath_arrow_drop_down, {
+      visible: true,
+    }); //arrow drop down is to be found here
+    console.log("dropm down clicked");
+    await arrow_drop.evaluate((b) => b.click()); //arrow drop down is clicked
 
+    await page_entry.waitForTimeout(3000); // delay of 3 seconds
+
+    let menu_drop = await page_entry.waitForXPath(xpath_menu_drop_down, {
+      visible: true,
+    }); //menu my profile is to be found here
+    console.log("profile licked");
+    await menu_drop.evaluate((b) => b.click()); //menu my profile is clicked
+
+    await page_entry.waitForTimeout(3000); // delay of 3 seconds
 }
