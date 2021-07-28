@@ -1,21 +1,29 @@
 {
   "name": "gelukzaaiers_testing",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test-gmail_login": "node test/gmail_login.js",
     "test-normal_login": "node test/normal_login.js",
     "test-register": "node test/register.js",
     "test-account_settings_reach": "node test/account_settings_reach.js"
-
-    
-
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "puppeteer": "^10.1.0"
-  }
+  },
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MuhammadHamzaAmir/Gelukzaaiers_Testing.git"
+  },
+  "bugs": {
+    "url": "https://github.com/MuhammadHamzaAmir/Gelukzaaiers_Testing/issues"
+  },
+  "homepage": "https://github.com/MuhammadHamzaAmir/Gelukzaaiers_Testing#readme",
+  "description": ""
 }

@@ -8,7 +8,6 @@ const puppeteer = require("puppeteer");
 
   const browser = await puppeteer.launch({
     headless: false,
-    product:'chrome',
     defaultViewport: null,
     args: ["--start-maximized"],
   }); //browser is launched
@@ -18,7 +17,7 @@ const puppeteer = require("puppeteer");
   // Configure the navigation timeout
   await page.setDefaultNavigationTimeout(0);
 
-  await page.goto("https://learnforce-students-next.vercel.app/"); //mentioned site is then reached
+  await page.goto("https://gelukzaaiers.learnforce.cloud/"); //mentioned site is then reached
   await page.waitForTimeout(4000); // delay for 5 second for website to load
 
   await login(page,email,password);
