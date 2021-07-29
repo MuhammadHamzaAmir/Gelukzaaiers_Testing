@@ -1,18 +1,30 @@
 const puppeteer = require("puppeteer");
 
 (async () => {
-
   var email = "homam57854@dedatre.com"; //email used for signup and login
   var password = "17againpc"; // default password for all the accounts
   var name = "Test-Operation"; // default name for all the accounts
 
-  var voorname_F = "TESTERSSS";  //voorname first aka first name
-  var voorname_S = "second test";  //voorname second aka first name
-  var achternaam = "TEST CORE RYZEN";  //achternaam second aka last name
+  var array_random_names = []; //random names array
+  for (let i = 0; i < 20; i++) {
+    array_random_names.push(await makeid(Math.floor(Math.random() * 10)));
+  }
+
+  let r_index = Math.floor(Math.random() * array_random_names.length); //generating random integer
+  var voorname_F = array_random_names[r_index]; //voorname first aka first name
+  array_random_names.slice(r_index, 1); //removing that element from the array
+
+  r_index = Math.floor(Math.random() * array_random_names.length); //generating random integer
+  var voorname_S = array_random_names[r_index]; //voorname second aka first name
+  array_random_names.slice(r_index, 1); //removing that element from the array
+  
+  r_index = Math.floor(Math.random() * array_random_names.length); //generating random integer
+  var achternaam = array_random_names[r_index]; //achternaam second aka last name
+  array_random_names.slice(r_index, 1); //removing that element from the array
 
   const browser = await puppeteer.launch({
     headless: false,
-    product:'chrome',
+    product: "chrome",
     defaultViewport: null,
     args: ["--start-maximized"],
   }); //browser is launched
@@ -22,11 +34,18 @@ const puppeteer = require("puppeteer");
   // Configure the navigation timeout
   await page.setDefaultNavigationTimeout(0);
 
-  await page.goto("https://learnforce-students-next.vercel.app/"); //mentioned site is then reached
+  await page.goto("https://gelukzaaiers.learnforce.cloud/"); //mentioned site is then reached
   await page.waitForTimeout(4000); // delay for 5 second for website to load
 
-  await account_info_update(page,email,password,voorname_F,achternaam,voorname_S);
-  await page.waitForTimeout(5000); // delay for 5 second for website to load
+  await account_info_update(
+    page,
+    email,
+    password,
+    voorname_F,
+    achternaam,
+    voorname_S
+  );
+  await page.waitForTimeout(3000); // delay for 3 second
 
   await browser.close();
 })();
@@ -133,7 +152,7 @@ async function account_info_update(page_entry, email, password,vnf,ach_ln,vns) {
       }); //voorname first input field is to be found here
     await page_entry.waitForTimeout(1500); // delay of 1.5 seconds
     await voorname_name_input_field.click({ clickCount: 3 }); //it selects the already written text and is overwritten in next line
-    await voorname_name_input_field.type(vnf); //input is entered in voorname first input field
+    await voorname_name_input_field.type(vnf, { delay: 69 }); //input is entered in voorname first input field
     console.log("voorname_name_input_field is entered");
   
     await page_entry.waitForTimeout(1500); // delay of 1.5 seconds
@@ -143,7 +162,7 @@ async function account_info_update(page_entry, email, password,vnf,ach_ln,vns) {
       }); //Achternaam input field is to be found here
     await ach_input_field.click({ clickCount: 3 }); //it selects the already written text and is overwritten in next line
       //console.log(typeof email_input);
-    await ach_input_field.type(ach_ln); //input is entered in Achternaam input field
+    await ach_input_field.type(ach_ln, { delay: 69 }); //input is entered in Achternaam input field
     console.log("Achternaam Input is entered");
   
     await page_entry.waitForTimeout(1500); // delay of 1.5 seconds
@@ -153,17 +172,31 @@ async function account_info_update(page_entry, email, password,vnf,ach_ln,vns) {
         { visible: true }
       ); //voorname_second input field is to be found here
     await voorname_second_input_field.click({ clickCount: 3 }); //it selects the already written text and is overwritten in next line
-    await voorname_second_input_field.type(vns); //input is entered in voorname_second input field
+    await voorname_second_input_field.type(vns, { delay: 69 }); //input is entered in voorname_second input field
     console.log("voorname_second Input is entered");
   
-    await page_entry.waitForTimeout(2000); // delay of 2 seconds
+    await page_entry.waitForTimeout(1000); // delay of 1 seconds
     
     await update_b.click(); //update button is clciked
 
-    
+    await page_entry.waitForTimeout(2000); // delay of 2 seconds
+
+      //verifyuing that it account info has changed
+    if (page_entry.url() === "https://gelukzaaiers.learnforce.cloud/course-listing/") {
+        console.log("Test is successful");
+    }
 
 
+}
 
-
-
+//function for generating random strings
+async function makeid(length) {
+  var result = "";
+  var characters =
+    "TESTtestFIRfirECec";
+  var charactersLength = characters.length;
+  for (var i = 0; i < length; i++) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+  return result;
 }
