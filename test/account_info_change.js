@@ -5,12 +5,13 @@ const puppeteer = require("puppeteer");
   var password = "17againpc"; // default password for all the accounts
   var name = "Test-Operation"; // default name for all the accounts
 
+  /*
   var array_random_names = []; //random names array
   for (let i = 0; i < 20; i++) {
     array_random_names.push(await makeid(Math.floor(Math.random() * 10)));
   }
 
-  let r_index = Math.floor(Math.random() * array_random_names.length); //generating random integer
+  //let r_index = Math.floor(Math.random() * array_random_names.length); //generating random integer
   var voorname_F = array_random_names[r_index]; //voorname first aka first name
   array_random_names.slice(r_index, 1); //removing that element from the array
 
@@ -20,7 +21,11 @@ const puppeteer = require("puppeteer");
   
   r_index = Math.floor(Math.random() * array_random_names.length); //generating random integer
   var achternaam = array_random_names[r_index]; //achternaam second aka last name
-  array_random_names.slice(r_index, 1); //removing that element from the array
+  array_random_names.slice(r_index, 1); //removing that element from the array*/
+
+  var voorname_F = "TESTER"; //voorname first aka first name
+  var voorname_S = 'TESTER CORE RYZEN'; //voorname second aka first name
+  var achternaam = "JUST TESTING"; //achternaam second aka last name
 
   const browser = await puppeteer.launch({
     headless: false,
@@ -145,7 +150,7 @@ async function account_info_update(page_entry, email, password,vnf,ach_ln,vns) {
         inline: "nearest"
       })
     );   //scrolling till that component
-    await page_entry.waitForTimeout(5000); // delay of 5 seconds
+    await page_entry.waitForTimeout(3000); // delay of 3 seconds
 
     let voorname_name_input_field = await page_entry.waitForXPath(xpath_voorname_first_input_field, {
         visible: true,
@@ -181,14 +186,17 @@ async function account_info_update(page_entry, email, password,vnf,ach_ln,vns) {
 
     await page_entry.waitForTimeout(2000); // delay of 2 seconds
 
-      //verifyuing that it account info has changed
-    if (page_entry.url() === "https://gelukzaaiers.learnforce.cloud/course-listing/") {
-        console.log("Test is successful");
+      //verifiuing that it account info has changed
+    if (
+      ((await voorname_name_input_field.evaluate((b) => b.value)) === vnf) &&
+      ((await ach_input_field.evaluate((b) => b.value)) === ach_ln) &&
+      ((await voorname_second_input_field.evaluate((b) => b.value)) === vns)) {
+      console.log("Test is successful");
     }
-
-
+  
 }
 
+/*
 //function for generating random strings
 async function makeid(length) {
   var result = "";
@@ -199,4 +207,4 @@ async function makeid(length) {
     result += characters.charAt(Math.floor(Math.random() * charactersLength));
   }
   return result;
-}
+}*/
