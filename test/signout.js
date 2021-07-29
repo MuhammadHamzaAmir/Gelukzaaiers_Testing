@@ -86,7 +86,7 @@ async function account_info_update(page_entry, email, password,vnf,ach_ln,vns) {
     await page_entry.waitForTimeout(5000); // delay of 5 seconds
 
     var xpath_arrow_drop_down = "//*[@id='_next']/div/div[1]/div/div[1]/div/div/div/div/div/div[1]/div"; //xpath of dropdown
-    var xpath_signout = "//*[@id='_next']/div/div[1]/div/div[1]/div/div/div/div/div/div[2]/ul/li"; //xpath of dropdown_menu
+    var xpath_signout = "//*[@id='_next']/div/div[1]/div/div[1]/div/div/div/div/div/div[2]/ul/li"; //xpath of dropdown_ signout
 
     let arrow_drop = await page_entry.waitForXPath(xpath_arrow_drop_down, {
       visible: true,
