@@ -94,7 +94,7 @@ async function account_info_update(page_entry, email, password,vnf,ach_ln,vns) {
     console.log("dropm down clicked");
     await arrow_drop.evaluate((b) => b.click()); //arrow drop down is clicked
 
-    await page_entry.waitForTimeout(3000); // delay of 3 seconds
+    await page_entry.waitForTimeout(5000); // delay of 5 seconds
 
     let signout = await page_entry.waitForXPath(xpath_signout, {
       visible: true,
