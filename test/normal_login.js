@@ -21,7 +21,7 @@ const puppeteer = require("puppeteer");
   await page.waitForTimeout(4000); // delay for 5 second for website to load
 
   await login(page,email,password);
-  await page.waitForTimeout(5000); // delay for 5 second for website to load
+  await page.waitForTimeout(3000); // delay for 3 second
 
 
   await browser.close();
@@ -80,12 +80,11 @@ async function login(page_entry, email, password) {
 
     await login_button.click();
 
-    await page_entry.waitForTimeout(5000); // delay of 5 seconds
-      //verifyuing that it should reach the login page after signout
-    if (page_entry.url() === "https://learnforce-students-next.vercel.app/course-listing/") {
+    await page_entry.waitForTimeout(7000); // delay of 7 seconds
+      //verifyuing that it should reach the main dashboard after login page
+    if (page_entry.url() === "https://gelukzaaiers.learnforce.cloud/course-listing/") {
         console.log("Test is successful");
     }
-
 
 
 

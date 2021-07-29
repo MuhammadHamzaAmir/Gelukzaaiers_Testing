@@ -18,11 +18,11 @@ const puppeteer = require("puppeteer");
   // Configure the navigation timeout
   await page.setDefaultNavigationTimeout(0);
 
-  await page.goto("https://learnforce-students-next.vercel.app/"); //mentioned site is then reached
+  await page.goto("https://gelukzaaiers.learnforce.cloud/"); //mentioned site is then reached
   await page.waitForTimeout(4000); // delay for 5 second for website to load
 
   await account_settings(page,email,password);
-  await page.waitForTimeout(5000); // delay for 5 second for website to load
+  await page.waitForTimeout(3000); // delay for 3 second 
 
 
   await browser.close();
@@ -101,5 +101,10 @@ async function account_settings(page_entry, email, password) {
     console.log("profile licked");
     await menu_drop.evaluate((b) => b.click()); //menu my profile is clicked
 
-    await page_entry.waitForTimeout(3000); // delay of 3 seconds
+    await page_entry.waitForTimeout(5000); // delay of 5 seconds
+
+          //verifyuing that it should reach the my profile page
+    if (page_entry.url() === "https://gelukzaaiers.learnforce.cloud/dashboard/") {
+        console.log("Test is successful");
+    }
 }
