@@ -1,7 +1,7 @@
 # Navigation End-to-End Testing of https://gelukzaaiers.learnforce.cloud/
  ### Prerequisites
  - Node v16.5.0 or above
- - Npm v7.19.1 or above
+ - Npm v7.19.0 or above
  - JavaScript
  - Puppeteer v10.1.0 or above https://pptr.dev/
  
