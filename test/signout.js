@@ -108,6 +108,5 @@ async function account_info_update(page_entry, email, password,vnf,ach_ln,vns) {
     if (page_entry.url() === "https://gelukzaaiers.learnforce.cloud/") {
       console.log("Test is successful");
     }
-    console.log(page_entry.url());
 
 }
