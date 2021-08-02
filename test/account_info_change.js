@@ -42,14 +42,7 @@ const puppeteer = require("puppeteer");
   await page.goto("https://gelukzaaiers.learnforce.cloud/"); //mentioned site is then reached
   await page.waitForTimeout(4000); // delay for 5 second for website to load
 
-  await account_info_update(
-    page,
-    email,
-    password,
-    voorname_F,
-    achternaam,
-    voorname_S
-  );
+  await account_info_update(page,email,password,voorname_F,achternaam,voorname_S);
   await page.waitForTimeout(3000); // delay for 3 second
 
   await browser.close();
@@ -63,31 +56,19 @@ async function account_info_update(page_entry, email, password,vnf,ach_ln,vns) {
     var xpath_password_if = "//*[@id='password']"; //xpath of password input field on login page
     var xpath_login_b_happen = "//*[@id='_next']/div/div/form/div[4]/button"; //xpath of login button on sign up page
         
-    let login_mainp = await page_entry.waitForXPath(xpath_login_b_mainp, {
-        visible: true,
-      }); //login button is to be found here
+    let login_mainp = await page_entry.waitForXPath(xpath_login_b_mainp, {visible: true,}); //login button is to be found here
     
     await login_mainp.evaluate((b) => b.click()); //login button is clicked
 
     await page_entry.waitForTimeout(4000); // delay for 4 second for website to load
 
-    let login_button = await page_entry.waitForXPath(
-        xpath_login_b_happen,
-        { visible: true }
-      ); //login button is to be found here
+    let login_button = await page_entry.waitForXPath(xpath_login_b_happen,{ visible: true }); //login button is to be found here
 
     await login_button.evaluate((c) =>
-      c.scrollIntoView({
-        behavior: "smooth",
-        block: "center",
-        inline: "center",
-      })
-    );   //scrolling till that component
+      c.scrollIntoView({behavior: "smooth",block: "center",inline: "center",}));   //scrolling till that component
 
     await page_entry.waitForTimeout(3001); // delay of 3 seconds
-    let email_input_field = await page_entry.waitForXPath(xpath_email_if, {
-        visible: true,
-      }); //email input field is to be found here
+    let email_input_field = await page_entry.waitForXPath(xpath_email_if, {visible: true,}); //email input field is to be found here
     await email_input_field.evaluate((b) => b.click({ clickCount: 3 })); //it selects the already written text and is overwritten in next line
     
     await email_input_field.type(email); //input is entered in email input field
@@ -95,10 +76,7 @@ async function account_info_update(page_entry, email, password,vnf,ach_ln,vns) {
   
     await page_entry.waitForTimeout(1500); // delay of 1.5 seconds
   
-    let password_input_field = await page_entry.waitForXPath(
-        xpath_password_if,
-        { visible: true }
-    ); //password input field is to be found here
+    let password_input_field = await page_entry.waitForXPath(xpath_password_if,{ visible: true }); //password input field is to be found here
     await password_input_field.evaluate((b) => b.click({ clickCount: 3 })); //it selects the already written text and is overwritten in next line
     await password_input_field.type(password); //input is entered in password input field
     console.log("Password Input is entered");
@@ -112,9 +90,7 @@ async function account_info_update(page_entry, email, password,vnf,ach_ln,vns) {
     var xpath_arrow_drop_down = "//*[@id='_next']/div/div[1]/div/div[1]/div/div/div/div/div/div[1]/div"; //xpath of dropdown
     var xpath_menu_drop_down = "//*[@id='_next']/div/div[1]/div/div[1]/div/div/div/div/div/div[2]/ul/a"; //xpath of dropdown_menu
 
-    let arrow_drop = await page_entry.waitForXPath(xpath_arrow_drop_down, {
-      visible: true,
-    }); //arrow drop down is to be found here
+    let arrow_drop = await page_entry.waitForXPath(xpath_arrow_drop_down, {visible: true,}); //arrow drop down is to be found here
     console.log("dropm down clicked");
     await arrow_drop.evaluate((b) => b.click()); //arrow drop down is clicked
 
@@ -134,50 +110,34 @@ async function account_info_update(page_entry, email, password,vnf,ach_ln,vns) {
     var xpath_voorname_second_input_field = "//*[@id='_next']/div/div/div[2]/div/div/div[2]/div[2]/div/div/form[1]/div/div[1]/div[3]/input"; //xpath of voorname second input field
     var xpath_Achternaam_input_field = "//*[@id='_next']/div/div/div[2]/div/div/div[2]/div[2]/div/div/form[1]/div/div[1]/div[2]/input"; //xpath of Achternaam input field
 
-    let account_s = await page_entry.waitForXPath(xpath_account, {
-        visible: true,
-      }); //account section is to be found here
+    let account_s = await page_entry.waitForXPath(xpath_account, {visible: true,}); //account section is to be found here
     await account_s.evaluate((b) => b.click()); //account section is clicked
     await page_entry.waitForTimeout(3000); // delay of 3 seconds
 
-    let update_b = await page_entry.waitForXPath(xpath_update_b, {
-        visible: true,
-      }); //update_button is to be found here
+    let update_b = await page_entry.waitForXPath(xpath_update_b, {visible: true,}); //update_button is to be found here
     await update_b.evaluate((c) =>
-      c.scrollIntoView({
-        behavior: "smooth",
-        block: "end", 
-        inline: "nearest"
-      })
-    );   //scrolling till that component
+      c.scrollIntoView({behavior: "smooth",block: "end", inline: "nearest"}));   //scrolling till that component
     await page_entry.waitForTimeout(3000); // delay of 3 seconds
 
-    let voorname_name_input_field = await page_entry.waitForXPath(xpath_voorname_first_input_field, {
-        visible: true,
-      }); //voorname first input field is to be found here
+    let voorname_name_input_field = await page_entry.waitForXPath(xpath_voorname_first_input_field, {visible: true,}); //voorname first input field is to be found here
     await page_entry.waitForTimeout(1500); // delay of 1.5 seconds
     await voorname_name_input_field.click({ clickCount: 3 }); //it selects the already written text and is overwritten in next line
-    await voorname_name_input_field.type(vnf, { delay: 69 }); //input is entered in voorname first input field
+    await voorname_name_input_field.type(vnf, { delay: 70 }); //input is entered in voorname first input field
     console.log("voorname_name_input_field is entered");
   
     await page_entry.waitForTimeout(1500); // delay of 1.5 seconds
   
-    let ach_input_field = await page_entry.waitForXPath(xpath_Achternaam_input_field, {
-        visible: true,
-      }); //Achternaam input field is to be found here
+    let ach_input_field = await page_entry.waitForXPath(xpath_Achternaam_input_field, {visible: true,}); //Achternaam input field is to be found here
     await ach_input_field.click({ clickCount: 3 }); //it selects the already written text and is overwritten in next line
       //console.log(typeof email_input);
-    await ach_input_field.type(ach_ln, { delay: 69 }); //input is entered in Achternaam input field
+    await ach_input_field.type(ach_ln, { delay: 70 }); //input is entered in Achternaam input field
     console.log("Achternaam Input is entered");
   
     await page_entry.waitForTimeout(1500); // delay of 1.5 seconds
   
-    let voorname_second_input_field = await page_entry.waitForXPath(
-        xpath_voorname_second_input_field,
-        { visible: true }
-      ); //voorname_second input field is to be found here
+    let voorname_second_input_field = await page_entry.waitForXPath(xpath_voorname_second_input_field,{ visible: true }); //voorname_second input field is to be found here
     await voorname_second_input_field.click({ clickCount: 3 }); //it selects the already written text and is overwritten in next line
-    await voorname_second_input_field.type(vns, { delay: 69 }); //input is entered in voorname_second input field
+    await voorname_second_input_field.type(vns, { delay: 70 }); //input is entered in voorname_second input field
     console.log("voorname_second Input is entered");
   
     await page_entry.waitForTimeout(1000); // delay of 1 seconds
