@@ -18,7 +18,6 @@ const puppeteer = require("puppeteer");
 
   await page.goto("https://gelukzaaiers.learnforce.cloud/"); //mentioned site is then reached
   await page.waitForTimeout(4000); // delay for 5 second for website to load
-
   await login(page, email, password);
   await page.waitForTimeout(3000); // delay for 3 second
 
@@ -68,17 +67,29 @@ async function login(page_entry, email, password) {
 
 
   var xpath_all_courses = '//*[@id="_next"]/div/div[2]/div/div[2]/div[2]/div[1]/div/ul/li[2]/a';    //xpath of all cousres tab
-  let all_courses_section = await page_entry.waitForXPath(all_courses_section, {visible: true,}); //all cousres tab is to be found here
+  let all_courses_section = await page_entry.waitForXPath(xpath_all_courses, {visible: true,}); //all cousres tab is to be found here
   await all_courses_section.evaluate((c) =>
     c.scrollIntoView({behavior: "smooth",block: "center",inline: "center",})); //scrolling till that component
+  await page_entry.waitForTimeout(7000); // delay of 7 seconds
   await all_courses_section.evaluate((b)=>b.click());   //all cousres tab is clicked
 
-  await page_entry.waitForTimeout(5000); // delay of 5 seconds
+  await page_entry.waitForTimeout(2000); // delay of 2 seconds
 
-  //verifyuing that it should reach the main dashboard after login page
-  if (
-    page_entry.url() === "https://gelukzaaiers.learnforce.cloud/course-listing/"
-  ) {
-    console.log("Test is successful");
-  }
+  var xpath_forward_slider = '//*[@id="_next"]/div/div[2]/div/div[2]/div[2]/div[2]/div/button[2]'     //xpath of forward slider
+  let forward_slider = await page_entry.waitForXPath(xpath_forward_slider, {visible: true,}); //forward_slider is to be found here
+  await forward_slider.evaluate((c) =>
+    c.scrollIntoView({behavior: "smooth",block: "center",inline: "center",})); //scrolling till that component
+
+  await page_entry.waitForTimeout(1000); // delay of 1 seconds
+  await forward_slider.click();
+
+  var xpath_backward_slider = '//*[@id="_next"]/div/div[2]/div/div[2]/div[2]/div[2]/div/button[1]'     //xpath of backward slider
+  let backward_slider = await page_entry.waitForXPath(xpath_backward_slider, {visible: true,}); //backward_slider is to be found here
+  await backward_slider.evaluate((c) =>
+    c.scrollIntoView({behavior: "smooth",block: "center",inline: "center",})); //scrolling till that component
+
+  await page_entry.waitForTimeout(1000); // delay of 1 seconds
+  await backward_slider.click();
+    
+  await page_entry.waitForTimeout(2000); // delay of 2 seconds
 }
