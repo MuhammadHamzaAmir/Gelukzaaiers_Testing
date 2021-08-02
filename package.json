@@ -9,8 +9,8 @@
     "test-my_profile_reach": "node test/my_profile_reach.js",
     "test-account_info_change": "node test/account_info_change.js",
     "test-signout": "node test/signout.js",
-    "test-password_update": "node test/password_update.js"
-
+    "test-password_update": "node test/password_update.js",
+    "test-slider_change": "node test/slider_change.js"
 
   },
   "keywords": [],
