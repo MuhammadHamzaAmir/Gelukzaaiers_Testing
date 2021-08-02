@@ -83,6 +83,8 @@ async function login(page_entry, email, password) {
   await page_entry.waitForTimeout(1000); // delay of 1 seconds
   await forward_slider.click();
 
+  await page_entry.waitForTimeout(1122); // delay of 1 seconds
+
   var xpath_backward_slider = '//*[@id="_next"]/div/div[2]/div/div[2]/div[2]/div[2]/div/button[1]'     //xpath of backward slider
   let backward_slider = await page_entry.waitForXPath(xpath_backward_slider, {visible: true,}); //backward_slider is to be found here
   await backward_slider.evaluate((c) =>
