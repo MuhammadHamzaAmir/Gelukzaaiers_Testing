@@ -112,7 +112,7 @@ async function account_info_update(page_entry, email, password,vnf,ach_ln,vns) {
 
     let account_s = await page_entry.waitForXPath(xpath_account, {visible: true,}); //account section is to be found here
     await account_s.evaluate((b) => b.click()); //account section is clicked
-    await page_entry.waitForTimeout(3000); // delay of 3 seconds
+    await page_entry.waitForTimeout(2000); // delay of 2 seconds
 
     let update_b = await page_entry.waitForXPath(xpath_update_b, {visible: true,}); //update_button is to be found here
     await update_b.evaluate((c) =>
@@ -145,6 +145,13 @@ async function account_info_update(page_entry, email, password,vnf,ach_ln,vns) {
     await update_b.click(); //update button is clciked
 
     await page_entry.waitForTimeout(2000); // delay of 2 seconds
+
+    await update_b.evaluate((c) =>
+      c.scrollIntoView({behavior: "smooth",block: "center", inline: "center"}));   //scrolling till that component
+
+    await page_entry.waitForTimeout(1500); // delay of 1.5 seconds
+
+    await page_entry.screenshot({path:"./screenshots/account_info_change.png"})    //capturing screenshots
 
       //verifiuing that it account info has changed
     if (

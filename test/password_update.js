@@ -5,7 +5,7 @@ const puppeteer = require("puppeteer");
   var password = "17againpc"; // default password for all the accounts
   var name = "Test-Operation"; // default name for all the accounts
 
-  var new_password = "17againps4"; // new password for all the accounts
+  var new_password = "17againps5"; // new password for all the accounts
 
   const browser = await puppeteer.launch({
     headless: false,
@@ -130,7 +130,9 @@ async function account_info_update(page_entry,email,password,new_password) {
 
   await update_b.click(); //update button is clciked
 
-  await page_entry.waitForTimeout(2000); // delay of 2 seconds
+  await page_entry.waitForTimeout(1500); // delay of 1.5 seconds
+
+  await page_entry.screenshot({path:"./screenshots/password_update.png"})    //capturing screenshots
 
   //verifiuing that it account info has changed
   if (

@@ -102,6 +102,8 @@ async function account_settings(page_entry, email, password) {
     await menu_drop.evaluate((b) => b.click()); //menu my profile is clicked
 
     await page_entry.waitForTimeout(5000); // delay of 5 seconds
+    
+    await page_entry.screenshot({path:"./screenshots/my_profile_reach.png"})    //capturing screenshots
 
           //verifyuing that it should reach the my profile page
     if (page_entry.url() === "https://gelukzaaiers.learnforce.cloud/dashboard/") {

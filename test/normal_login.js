@@ -23,7 +23,6 @@ const puppeteer = require("puppeteer");
   await login(page,email,password);
   await page.waitForTimeout(3000); // delay for 3 second
 
-
   await browser.close();
 })();
 
@@ -80,7 +79,11 @@ async function login(page_entry, email, password) {
 
     await login_button.click();
 
-    await page_entry.waitForTimeout(7000); // delay of 7 seconds
+    await page_entry.waitForTimeout(10000); // delay of 10 seconds
+    
+    await page_entry.screenshot({path:"./screenshots/login.png"})    //capturing screenshots
+
+    await page_entry.waitForTimeout(2500); // delay of 2.5 seconds
       //verifyuing that it should reach the main dashboard after login page
     if (page_entry.url() === "https://gelukzaaiers.learnforce.cloud/course-listing/") {
         console.log("Test is successful");

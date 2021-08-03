@@ -104,6 +104,8 @@ async function account_info_update(page_entry, email, password,vnf,ach_ln,vns) {
     console.log("signout clicked");
     await page_entry.waitForTimeout(3000); // delay of 3 seconds
 
+    await page_entry.screenshot({path:"./screenshots/signout.png"})    //capturing screenshots
+
               //verifyuing that it should reach the login page after signout
     if (page_entry.url() === "https://gelukzaaiers.learnforce.cloud/") {
       console.log("Test is successful");
